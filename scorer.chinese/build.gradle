@@ -1,0 +1,26 @@
+ext.moduleName = 'org.cejones.java9.mahjongscorer.scorer.chinese'
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+sourceCompatibility = 9
+
+group = 'org.cejones.java9.mahjongscorer'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile project(':scorer')
+}
+
+compileJava {
+    inputs.property("moduleName", moduleName)
+    doFirst {
+        options.compilerArgs = [
+                '--module-path', classpath.asPath,
+        ]
+        classpath = files()
+    }
+}

@@ -1,0 +1,46 @@
+ext.moduleName = 'org.cejones.java9.mahjongscorer.api'
+
+buildscript {
+	ext {
+		springBootVersion = '1.5.7.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+group = 'org.cejones.java9.mahjongscorer'
+version = '1.0.0-SNAPSHOT'
+sourceCompatibility = 9
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter')
+	compile('org.springframework.boot:spring-boot-starter-web')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+	implementation project(':config')
+	implementation project(':scorer')
+	compile 'junit:junit:4.12'
+	compile 'junit:junit:4.12'
+}
+
+compileJava {
+	inputs.property("moduleName", moduleName)
+	doFirst {
+		options.compilerArgs = [
+		        '--module-path', classpath.asPath,
+		]
+		classpath = files()
+	}
+}
