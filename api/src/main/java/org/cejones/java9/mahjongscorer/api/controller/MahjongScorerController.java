@@ -19,9 +19,12 @@ public class MahjongScorerController {
         return "ping";
     }
 
-    @RequestMapping("/scoreHand/{hand}")
-    public int scoreHand(@PathVariable String hand, @RequestParam String scoreMethod) {
-        ScorerType scoreMethodEnum = ScorerType.valueOf(scoreMethod);
-        return scorerService.getScore(hand, scoreMethodEnum);
+    @RequestMapping("/scoreHand/{method}")
+    public int scoreHand(@PathVariable String method, @RequestParam int[] exposed, @RequestParam int[] concealed, @RequestParam int winType) {
+        //126976 - First Mahjong tile
+        //127018 - Last Mahjong tile
+        ScorerType scoreMethodEnum = ScorerType.valueOf(method);
+        System.out.println(exposed);
+        return scorerService.getScore(exposed, scoreMethodEnum);
     }
 }

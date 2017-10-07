@@ -10,7 +10,7 @@ public class ScorerServiceImpl implements ScorerService {
     private ScorerFactory factory;
 
     @Override
-    public int getScore(String hand, ScorerType type) {
+    public int getScore(int[] hand, ScorerType type) {
         Scorer scorer = factory.getScorer(type);
         return scorer.scoreHand(hand);
     }

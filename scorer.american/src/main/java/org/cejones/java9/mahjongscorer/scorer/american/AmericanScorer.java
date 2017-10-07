@@ -4,7 +4,7 @@ import org.cejones.java9.mahjongscorer.scorer.Scorer;
 
 public class AmericanScorer implements Scorer {
     @Override
-    public int scoreHand(String hand) {
+    public int scoreHand(int[] hand) {
         return 0;
     }
 }
